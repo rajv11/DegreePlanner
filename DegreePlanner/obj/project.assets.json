@@ -12072,23 +12072,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\raj\\.nuget\\packages\\": {},
+    "C:\\Users\\charan\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\raj\\Documents\\44663\\DegreePlanner\\DegreePlanner\\DegreePlanner.csproj",
+      "projectUniqueName": "C:\\Users\\charan\\Desktop\\DOTNET_PROJECT\\DegreePlanner\\DegreePlanner\\DegreePlanner.csproj",
       "projectName": "DegreePlanner",
-      "projectPath": "C:\\Users\\raj\\Documents\\44663\\DegreePlanner\\DegreePlanner\\DegreePlanner.csproj",
-      "packagesPath": "C:\\Users\\raj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\raj\\Documents\\44663\\DegreePlanner\\DegreePlanner\\obj\\",
+      "projectPath": "C:\\Users\\charan\\Desktop\\DOTNET_PROJECT\\DegreePlanner\\DegreePlanner\\DegreePlanner.csproj",
+      "packagesPath": "C:\\Users\\charan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\charan\\Desktop\\DOTNET_PROJECT\\DegreePlanner\\DegreePlanner\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\raj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\charan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
