@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DegreePlanner.Data
 {
-    public class DegreePlannerDbCoDtext : IdentityDbContext
+    public class DegreePlannerDbContext : IdentityDbContext
     {
-        public DegreePlannerDbCoDtext(DbContextOptions<DegreePlannerDbCoDtext> options)
+        public DegreePlannerDbContext(DbContextOptions<DegreePlannerDbContext> options)
             : base(options)
         {
         }

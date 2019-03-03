@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DegreePlanner.Data.Migrations
 {
-    [DbContext(typeof(DegreePlannerDbCoDtext))]
+    [DbContext(typeof(DegreePlannerDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {

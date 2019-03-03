@@ -35,12 +35,12 @@ namespace DegreePlanner
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<DegreePlannerDbCoDtext>(options =>
+            services.AddDbContext<DegreePlannerDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<DegreePlannerDbCoDtext>();
+                .AddEntityFrameworkStores<DegreePlannerDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
