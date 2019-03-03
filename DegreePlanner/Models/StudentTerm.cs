@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DegreePlanner.Models
 {
-    public class StudnetTerm
+    public class StudentTerm
     {
         public int StudentTermID { get; set; }
         public int StudentID { get; set; }
