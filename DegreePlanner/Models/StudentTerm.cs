@@ -11,7 +11,7 @@ namespace DegreePlanner.Models
         public int StudentID { get; set; }
         public int Term { get; set; }
         public string TermAbbrev { get; set; }
-        public string TermLable { get; set; }
+        public string TermLabel { get; set; }
 
     }
 }
