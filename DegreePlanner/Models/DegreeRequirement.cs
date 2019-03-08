@@ -10,5 +10,8 @@ namespace DegreePlanner.Models
         public int DegreeRequirementID { get; set; }
         public int DegreeID { get; set; }
         public int RequirementID { get; set; }
+
+        public ICollection<Degree> Degrees { get; set; }
+        public ICollection<Requirement> Requirements { get; set; }
     }
 }

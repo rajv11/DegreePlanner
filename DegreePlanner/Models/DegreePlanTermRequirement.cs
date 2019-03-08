@@ -12,5 +12,8 @@ namespace DegreePlanner.Models
         public int TermID { get; set; }
         public int RequirementID { get; set; }
 
+        public ICollection<Degree> Degrees { get; set; }
+        public ICollection<StudentTerm> StudentTerms { get; set; }
+        public ICollection<Requirement> Requirements { get; set; }
     }
 }

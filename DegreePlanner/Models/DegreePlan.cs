@@ -13,5 +13,7 @@ namespace DegreePlanner.Models
         public string DegreePlanAbbrev { get; set; }
         public string DegreePlanName { get; set; }
 
+        public ICollection<Degree> Degrees { get; set; }
+        public ICollection<Student> Studnets { get; set; }
     }
 }

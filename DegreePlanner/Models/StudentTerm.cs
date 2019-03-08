@@ -13,5 +13,6 @@ namespace DegreePlanner.Models
         public string TermAbbrev { get; set; }
         public string TermLabel { get; set; }
 
+        public ICollection<Student> Students { get; set; }
     }
 }
