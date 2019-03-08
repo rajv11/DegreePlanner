@@ -25,9 +25,9 @@ namespace DegreePlanner.Data
                 };
                 Console.WriteLine($"Inserted {Degrees.Length} new degrees");
 
-                foreach (Models.Degree d in Degrees)
+                foreach (Models.Degree degree in Degrees)
                 {
-                    context.Degrees.Add(d);
+                    context.Degrees.Add(degree);
                 }
                 context.SaveChanges();
             }
