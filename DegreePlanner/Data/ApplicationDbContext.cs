@@ -24,6 +24,7 @@ namespace DegreePlanner.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Models.Degree>().ToTable("Degree");
             modelBuilder.Entity<Models.Requirement>().ToTable("Requirement");
             modelBuilder.Entity<Models.DegreeRequirement>().ToTable("DegreeRequirement");
