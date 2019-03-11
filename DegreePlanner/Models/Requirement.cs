@@ -7,7 +7,7 @@ namespace DegreePlanner.Models
 {
     public class Requirement
     {
-        public int RequirementID { get; set; }
+        public int RequirementId { get; set; }
         public string RequirementAbbrev { get; set; }
         public string RequirementName { get; set; }
     }

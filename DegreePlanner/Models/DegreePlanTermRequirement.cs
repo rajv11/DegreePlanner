@@ -7,10 +7,10 @@ namespace DegreePlanner.Models
 {
     public class DegreePlanTermRequirement
     {
-        public int DegreePlanTermRequirementID { get; set; }
-        public int DegreePlanID { get; set; }
-        public int TermID { get; set; }
-        public int RequirementID { get; set; }
+        public int DegreePlanTermRequirementId { get; set; }
+        public int DegreePlanId { get; set; }
+        public int TermId { get; set; }
+        public int RequirementId { get; set; }
 
         public ICollection<Degree> Degrees { get; set; }
         public ICollection<StudentTerm> StudentTerms { get; set; }

@@ -7,7 +7,7 @@ namespace DegreePlanner.Models
 {
     public class Degree
     {
-        public int DegreeID { get; set; }
+        public int DegreeId { get; set; }
         public string DegreeAbrev { get; set; }
         public string DegreeName { get; set; }
 
