@@ -19,12 +19,12 @@ namespace DegreePlanner.Models
         public int StudentId { get; set; }
 
         [Required]
-        [StringLength(6, MinimumLength = 3)]
+        
         [Display(Name = "Abbreviation")]
         public string DegreePlanAbbrev { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 3)]
+        [StringLength(40, MinimumLength = 3)]
         [Display(Name = "Name")]
         public string DegreePlanName { get; set; }
 

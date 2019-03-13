@@ -20,7 +20,8 @@ namespace DegreePlanner.Models
         [ForeignKey("RequirementId")]
         public int RequirementId { get; set; }
 
-        public DegreePlan DegreePlan { get; set; }
+        
+        public DegreePlan DegreePlan{ get; set; }
         public Requirement Requirement { get; set; }
     }
 }

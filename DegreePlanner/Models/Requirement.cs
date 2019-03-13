@@ -18,7 +18,7 @@ namespace DegreePlanner.Models
         public string RequirementAbbrev { get; set; }
 
         [Required]
-        [StringLength(24, MinimumLength = 3)]
+        [StringLength(40, MinimumLength = 3)]
         [Display(Name = "Name")]
         public string RequirementName { get; set; }
     }

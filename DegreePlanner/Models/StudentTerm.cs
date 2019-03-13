@@ -17,12 +17,12 @@ namespace DegreePlanner.Models
         public int Term { get; set; }
 
         [Required]
-        [StringLength(6, MinimumLength = 3)]
+        [StringLength(10, MinimumLength = 3)]
         [Display(Name = "Abbreviation")]
         public string TermAbbrev { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 3)]
+        [StringLength(40, MinimumLength = 3)]
         [Display(Name = "Term Label")]
         public string TermLabel { get; set; }
 

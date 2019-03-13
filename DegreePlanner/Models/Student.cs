@@ -21,9 +21,12 @@ namespace DegreePlanner.Models
         [Display(Name = "Last name")]
         public string LastName { get; set; }
         [Required]
-        [StringLength(7, MinimumLength = 7)]
+        [StringLength(10, MinimumLength = 7)]
         [Display(Name = "Studnet Number")]
         public string SNumber { get; set; }
         public int _919 { get; set; }
+
+        public ICollection<DegreePlan> DegreePlans { get; set; }
+        public ICollection<StudentTerm> StudentTerms { get; set; }
     }
 }
