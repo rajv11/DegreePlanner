@@ -14,12 +14,12 @@ namespace DegreePlanner.Models
         public int DegreeId { get; set; }
 
         [Required]
-        [StringLength(6, MinimumLength = 3)]
+        [StringLength(10, MinimumLength = 3)]
         [Display(Name = "Abbreviation")]
         public string DegreeAbrev { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 3)]
+        [StringLength(40, MinimumLength = 2)]
         [Display(Name = "Name")]
         public string DegreeName { get; set; }
 

@@ -10,22 +10,22 @@ using DegreePlanner.Models;
 
 namespace DegreePlanner.Controllers
 {
-    public class RequirementsController : Controller
+    public class StudentController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public RequirementsController(ApplicationDbContext context)
+        public StudentController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Requirements
+        // GET: Student
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Requirements.ToListAsync());
+            return View(await _context.Students.ToListAsync());
         }
 
-        // GET: Requirements/Details/5
+        // GET: Student/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace DegreePlanner.Controllers
                 return NotFound();
             }
 
-            var requirement = await _context.Requirements
-                .FirstOrDefaultAsync(m => m.RequirementId == id);
-            if (requirement == null)
+            var student = await _context.Students
+                .FirstOrDefaultAsync(m => m.StudentId == id);
+            if (student == null)
             {
                 return NotFound();
             }
 
-            return View(requirement);
+            return View(student);
         }
 
-        // GET: Requirements/Create
+        // GET: Student/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Requirements/Create
+        // POST: Student/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RequirementId,RequirementAbbrev,RequirementName")] Requirement requirement)
+        public async Task<IActionResult> Create([Bind("StudentId,FirstName,LastName,SNumber,_919")] Student student)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(requirement);
+                _context.Add(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(requirement);
+            return View(student);
         }
 
-        // GET: Requirements/Edit/5
+        // GET: Student/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace DegreePlanner.Controllers
                 return NotFound();
             }
 
-            var requirement = await _context.Requirements.FindAsync(id);
-            if (requirement == null)
+            var student = await _context.Students.FindAsync(id);
+            if (student == null)
             {
                 return NotFound();
             }
-            return View(requirement);
+            return View(student);
         }
 
-        // POST: Requirements/Edit/5
+        // POST: Student/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RequirementId,RequirementAbbrev,RequirementName")] Requirement requirement)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,LastName,SNumber,_919")] Student student)
         {
-            if (id != requirement.RequirementId)
+            if (id != student.StudentId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace DegreePlanner.Controllers
             {
                 try
                 {
-                    _context.Update(requirement);
+                    _context.Update(student);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RequirementExists(requirement.RequirementId))
+                    if (!StudentExists(student.StudentId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace DegreePlanner.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(requirement);
+            return View(student);
         }
 
-        // GET: Requirements/Delete/5
+        // GET: Student/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace DegreePlanner.Controllers
                 return NotFound();
             }
 
-            var requirement = await _context.Requirements
-                .FirstOrDefaultAsync(m => m.RequirementId == id);
-            if (requirement == null)
+            var student = await _context.Students
+                .FirstOrDefaultAsync(m => m.StudentId == id);
+            if (student == null)
             {
                 return NotFound();
             }
 
-            return View(requirement);
+            return View(student);
         }
 
-        // POST: Requirements/Delete/5
+        // POST: Student/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var requirement = await _context.Requirements.FindAsync(id);
-            _context.Requirements.Remove(requirement);
+            var student = await _context.Students.FindAsync(id);
+            _context.Students.Remove(student);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RequirementExists(int id)
+        private bool StudentExists(int id)
         {
-            return _context.Requirements.Any(e => e.RequirementId == id);
+            return _context.Students.Any(e => e.StudentId == id);
         }
     }
 }

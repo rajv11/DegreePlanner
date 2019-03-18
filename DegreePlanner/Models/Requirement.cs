@@ -21,5 +21,7 @@ namespace DegreePlanner.Models
         [StringLength(40, MinimumLength = 3)]
         [Display(Name = "Name")]
         public string RequirementName { get; set; }
+
+        //public ICollection<DegreeRequirement> DegreeRequirements { get; set; }
     }
 }

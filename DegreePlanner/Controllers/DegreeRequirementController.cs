@@ -10,23 +10,23 @@ using DegreePlanner.Models;
 
 namespace DegreePlanner.Controllers
 {
-    public class DegreeRequirementsController : Controller
+    public class DegreeRequirementController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public DegreeRequirementsController(ApplicationDbContext context)
+        public DegreeRequirementController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: DegreeRequirements
+        // GET: DegreeRequirement
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.DegreeRequirements.Include(d => d.Degree).Include(d => d.Requirement);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: DegreeRequirements/Details/5
+        // GET: DegreeRequirement/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,7 +46,7 @@ namespace DegreePlanner.Controllers
             return View(degreeRequirement);
         }
 
-        // GET: DegreeRequirements/Create
+        // GET: DegreeRequirement/Create
         public IActionResult Create()
         {
             ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbrev");
@@ -54,7 +54,7 @@ namespace DegreePlanner.Controllers
             return View();
         }
 
-        // POST: DegreeRequirements/Create
+        // POST: DegreeRequirement/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -72,7 +72,7 @@ namespace DegreePlanner.Controllers
             return View(degreeRequirement);
         }
 
-        // GET: DegreeRequirements/Edit/5
+        // GET: DegreeRequirement/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,7 +90,7 @@ namespace DegreePlanner.Controllers
             return View(degreeRequirement);
         }
 
-        // POST: DegreeRequirements/Edit/5
+        // POST: DegreeRequirement/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -127,7 +127,7 @@ namespace DegreePlanner.Controllers
             return View(degreeRequirement);
         }
 
-        // GET: DegreeRequirements/Delete/5
+        // GET: DegreeRequirement/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -147,7 +147,7 @@ namespace DegreePlanner.Controllers
             return View(degreeRequirement);
         }
 
-        // POST: DegreeRequirements/Delete/5
+        // POST: DegreeRequirement/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

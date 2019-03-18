@@ -52,8 +52,8 @@ namespace DegreePlanner.Migrations
                 columns: table => new
                 {
                     DegreeId = table.Column<int>(nullable: false),
-                    DegreeAbrev = table.Column<string>(maxLength: 6, nullable: false),
-                    DegreeName = table.Column<string>(maxLength: 20, nullable: false)
+                    DegreeAbrev = table.Column<string>(maxLength: 10, nullable: false),
+                    DegreeName = table.Column<string>(maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {

@@ -10,23 +10,23 @@ using DegreePlanner.Models;
 
 namespace DegreePlanner.Controllers
 {
-    public class DegreePlanTermRequirementsController : Controller
+    public class DegreePlanTermRequirementController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public DegreePlanTermRequirementsController(ApplicationDbContext context)
+        public DegreePlanTermRequirementController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: DegreePlanTermRequirements
+        // GET: DegreePlanTermRequirement
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.DegreePlanTermRequirements.Include(d => d.DegreePlan).Include(d => d.Requirement);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: DegreePlanTermRequirements/Details/5
+        // GET: DegreePlanTermRequirement/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,7 +46,7 @@ namespace DegreePlanner.Controllers
             return View(degreePlanTermRequirement);
         }
 
-        // GET: DegreePlanTermRequirements/Create
+        // GET: DegreePlanTermRequirement/Create
         public IActionResult Create()
         {
             ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev");
@@ -54,7 +54,7 @@ namespace DegreePlanner.Controllers
             return View();
         }
 
-        // POST: DegreePlanTermRequirements/Create
+        // POST: DegreePlanTermRequirement/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -72,7 +72,7 @@ namespace DegreePlanner.Controllers
             return View(degreePlanTermRequirement);
         }
 
-        // GET: DegreePlanTermRequirements/Edit/5
+        // GET: DegreePlanTermRequirement/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,7 +90,7 @@ namespace DegreePlanner.Controllers
             return View(degreePlanTermRequirement);
         }
 
-        // POST: DegreePlanTermRequirements/Edit/5
+        // POST: DegreePlanTermRequirement/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -127,7 +127,7 @@ namespace DegreePlanner.Controllers
             return View(degreePlanTermRequirement);
         }
 
-        // GET: DegreePlanTermRequirements/Delete/5
+        // GET: DegreePlanTermRequirement/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -147,7 +147,7 @@ namespace DegreePlanner.Controllers
             return View(degreePlanTermRequirement);
         }
 
-        // POST: DegreePlanTermRequirements/Delete/5
+        // POST: DegreePlanTermRequirement/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

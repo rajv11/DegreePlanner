@@ -31,5 +31,7 @@ namespace DegreePlanner.Models
 
         public Degree Degree { get; set; }
         public Student Student { get; set; }
+
+        //public ICollection<DegreePlan> DegreePlans { get; set; }
     }
 }
