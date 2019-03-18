@@ -20,10 +20,38 @@ namespace DegreePlanner.Controllers
         }
 
         // GET: DegreePlanTermRequirement
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String sortOrder)
         {
+            ViewData["TermSortParm"] = String.IsNullOrEmpty(sortOrder) ? "term_desc" : "";
+            ViewData["DpSortParm"] = sortOrder == "Dp" ? "Dp_desc" : "Dp";
+            ViewData["ReqSortParm"] = sortOrder == "Req" ? "Req_desc" : "Req";
+
             var applicationDbContext = _context.DegreePlanTermRequirements.Include(d => d.DegreePlan).Include(d => d.Requirement);
-            return View(await applicationDbContext.ToListAsync());
+            var dpreq = from dpr in applicationDbContext
+                        select dpr;
+            switch (sortOrder)
+            {
+                case "term_desc":
+                    dpreq = dpreq.OrderByDescending(dpr => dpr.TermId);
+                    break;
+                case "Dp_desc":
+                    dpreq = dpreq.OrderByDescending(dpr => dpr.DegreePlanId);
+                    break;
+                case "Dp":
+                    dpreq = dpreq.OrderBy(dpr => dpr.DegreePlanId);
+                    break;
+                case "Req_desc":
+                    dpreq = dpreq.OrderByDescending(dpr => dpr.Requirement);
+                    break;
+                case "Req":
+                    dpreq = dpreq.OrderBy(dpr => dpr.Requirement);
+                    break;
+                default:
+                    dpreq = dpreq.OrderBy(dpr => dpr.TermId);
+                    break;
+            }
+
+            return View(await dpreq.ToListAsync());
         }
 
         // GET: DegreePlanTermRequirement/Details/5

@@ -20,9 +20,29 @@ namespace DegreePlanner.Controllers
         }
 
         // GET: Degree
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String sortOrder)
         {
-            return View(await _context.Degrees.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["AbbrSortParm"] = sortOrder == "Abbrv" ? "Abbrv_desc" : "Abbrv";
+            var Degrees = from d in _context.Degrees
+                           select d;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    Degrees = Degrees.OrderByDescending(d => d.DegreeName);
+                    break;
+                case "Abbrv_desc":
+                    Degrees = Degrees.OrderByDescending(d => d.DegreeAbrev);
+                    break;
+                case "Abbr":
+                    Degrees = Degrees.OrderBy(d => d.DegreeAbrev);
+                    break;
+                default:
+                    Degrees = Degrees.OrderBy(d => d.DegreeName);
+                    break;
+            }
+            return View(await Degrees.AsNoTracking().ToListAsync());
+
         }
 
         // GET: Degree/Details/5
