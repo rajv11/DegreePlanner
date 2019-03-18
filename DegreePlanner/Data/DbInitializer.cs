@@ -129,7 +129,27 @@ namespace DegreePlanner.Data
                 }
                 context.SaveChanges();
             }
+            if (context.Students.Any())
+            {
+                Console.WriteLine(" Students already exist");
+            }
+            else
+            {
+                var Students = new Models.Student[]
+                {
+                    new Models.Student{StudentId=531519,FirstName="Yashwanth" ,LastName="Bommineni" ,SNumber="S531519" ,_919=919562791},
+                    new Models.Student{StudentId=531499,FirstName="Saicharan" ,LastName="Gurudu" ,SNumber="s531499" ,_919=919558726},
+                    new Models.Student{StudentId=531370,FirstName="Vamshi raj" ,LastName="jennaikode" ,SNumber="s531370" ,_919=919563101},
+                    new Models.Student{StudentId=531439,FirstName="Dattu Bhargav" ,LastName="Medarametla" ,SNumber="s531439" ,_919=919563365},
+                    };
+                Console.WriteLine($"Inserted {Students.Length} new degrees");
 
+                foreach (Models.Student student in Students)
+                {
+                    context.Students.Add(student);
+                }
+                context.SaveChanges();
+            }
 
             if (context.StudentTerms.Any())
             {
@@ -196,27 +216,7 @@ namespace DegreePlanner.Data
                 context.SaveChanges();
             }
 
-            if (context.Students.Any())
-            {
-                Console.WriteLine(" Students already exist");
-            }
-            else
-            {
-                var Students = new Models.Student[]
-                {
-                    new Models.Student{StudentId=531519,FirstName="Yashwanth" ,LastName="Bommineni" ,SNumber="S531519" ,_919=919562791},
-                    new Models.Student{StudentId=531499,FirstName="Saicharan" ,LastName="Gurudu" ,SNumber="s531499" ,_919=919558726},
-                    new Models.Student{StudentId=531370,FirstName="Vamshi raj" ,LastName="jennaikode" ,SNumber="s531370" ,_919=919563101},
-                    new Models.Student{StudentId=531439,FirstName="Dattu Bhargav" ,LastName="Medarametla" ,SNumber="s531439" ,_919=919563365},
-                    };
-                Console.WriteLine($"Inserted {Students.Length} new degrees");
-
-                foreach (Models.Student student in Students)
-                {
-                    context.Students.Add(student);
-                }
-                context.SaveChanges();
-            }
+            
 
             if (context.DegreePlanTermRequirements.Any())
             {
