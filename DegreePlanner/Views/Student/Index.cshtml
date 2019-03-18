@@ -9,15 +9,25 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by First Name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["FirstSortParm"]">@Html.DisplayNameFor(model => model.FirstName)</a>
+</th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LastSortParm"]">@Html.DisplayNameFor(model => model.LastName)</a>
+</th>
             <th>
                 @Html.DisplayNameFor(model => model.SNumber)
             </th>

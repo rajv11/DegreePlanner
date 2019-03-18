@@ -20,9 +20,31 @@ namespace DegreePlanner.Controllers
         }
 
         // GET: Student
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String sortOrder)
         {
-            return View(await _context.Students.ToListAsync());
+            ViewData["FirstSortParm"] = String.IsNullOrEmpty(sortOrder) ? "first_desc" : "";
+            ViewData["LastSortParm"] = sortOrder == "Last" ? "Last_desc" : "Last";
+            var studnets = from s in _context.Students
+                           select s;
+            switch (sortOrder)
+            {
+                case "first_desc":
+                    studnets = studnets.OrderByDescending(s => s.FirstName);
+                    break;
+                case "Last_desc":
+                    studnets = studnets.OrderByDescending(s => s.LastName);
+                    break;
+                case "Last":
+                    studnets = studnets.OrderBy(s => s.LastName);
+                    break;
+               
+                default:
+                    studnets = studnets.OrderBy(s => s.FirstName);
+                    break;
+            }
+
+
+            return View(await studnets.ToListAsync());
         }
 
         // GET: Student/Details/5
