@@ -20,10 +20,31 @@ namespace DegreePlanner.Controllers
         }
 
         // GET: DegreeRequirement
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String sortOrder)
         {
+            ViewData["DegreeSortParm"] = String.IsNullOrEmpty(sortOrder) ? "degree_desc" : "";
+            ViewData["ReqSortParm"] = sortOrder == "Req" ? "Req_desc" : "Req";
             var applicationDbContext = _context.DegreeRequirements.Include(d => d.Degree).Include(d => d.Requirement);
-            return View(await applicationDbContext.ToListAsync());
+            var dreq = from dr in applicationDbContext
+                        select dr;
+            switch (sortOrder)
+            {
+                case "degree_desc":
+                    dreq = dreq.OrderByDescending(dr => dr.Degree);
+                    break;
+                
+                case "Req_desc":
+                    dreq = dreq.OrderByDescending(dr => dr.Requirement);
+                    break;
+                case "Req":
+                    dreq = dreq.OrderBy(dr => dr.Requirement);
+                    break;
+                default:
+                    dreq = dreq.OrderBy(dr => dr.Degree);
+                    break;
+            }
+
+            return View(await dreq.ToListAsync());
         }
 
         // GET: DegreeRequirement/Details/5
