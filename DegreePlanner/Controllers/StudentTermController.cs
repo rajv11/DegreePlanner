@@ -20,10 +20,46 @@ namespace DegreePlanner.Controllers
         }
 
         // GET: StudentTerm
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String sortOrder)
         {
+            ViewData["AbbrvSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Abbrv_desc" : "";
+            ViewData["TermSortParm"] = sortOrder == "Term" ? "Term_desc" : "Term";
+            ViewData["LabelSortParm"] = sortOrder == "Label" ? "Label_desc" : "Label";
+
+            ViewData["StudentSortParm"] = sortOrder == "St" ? "St_desc" : "St";
             var applicationDbContext = _context.StudentTerms.Include(s => s.Student);
-            return View(await applicationDbContext.ToListAsync());
+
+            var stTerms = from st in applicationDbContext
+                           select st;
+            switch (sortOrder)
+            {
+                case "Abbrv_desc":
+                    stTerms = stTerms.OrderByDescending(st => st.TermAbbrev);
+                    break;
+                case "Term_desc":
+                    stTerms = stTerms.OrderByDescending(st => st.Term);
+                    break;
+                case "Term":
+                    stTerms = stTerms.OrderBy(st => st.Term);
+                    break;
+                case "Label_desc":
+                    stTerms = stTerms.OrderByDescending(st => st.TermLabel);
+                    break;
+                case "Label":
+                    stTerms = stTerms.OrderBy(st => st.TermLabel);
+                    break;
+                case "St_desc":
+                    stTerms = stTerms.OrderByDescending(st => st.Student);
+                    break;
+                case "St":
+                    stTerms = stTerms.OrderBy(st => st.Student);
+                    break;
+
+                default:
+                    stTerms = stTerms.OrderBy(st => st.TermAbbrev);
+                    break;
+            }
+            return View(await stTerms.ToListAsync());
         }
 
         // GET: StudentTerm/Details/5
