@@ -20,12 +20,18 @@ namespace DegreePlanner.Controllers
         }
 
         // GET: Student
-        public async Task<IActionResult> Index(String sortOrder)
+        public async Task<IActionResult> Index(String sortOrder,String searchString)
         {
             ViewData["FirstSortParm"] = String.IsNullOrEmpty(sortOrder) ? "first_desc" : "";
             ViewData["LastSortParm"] = sortOrder == "Last" ? "Last_desc" : "Last";
+            ViewData["CurrentFilter"] = searchString;
             var studnets = from s in _context.Students
                            select s;
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                studnets = studnets.Where(s => s.FirstName.Contains(searchString));
+            }
+
             switch (sortOrder)
             {
                 case "first_desc":

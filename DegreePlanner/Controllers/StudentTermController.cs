@@ -20,17 +20,22 @@ namespace DegreePlanner.Controllers
         }
 
         // GET: StudentTerm
-        public async Task<IActionResult> Index(String sortOrder)
+        public async Task<IActionResult> Index(String sortOrder,String searchString)
         {
             ViewData["AbbrvSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Abbrv_desc" : "";
             ViewData["TermSortParm"] = sortOrder == "Term" ? "Term_desc" : "Term";
             ViewData["LabelSortParm"] = sortOrder == "Label" ? "Label_desc" : "Label";
-
             ViewData["StudentSortParm"] = sortOrder == "St" ? "St_desc" : "St";
+            ViewData["CurrentFilter"] = searchString;
+
             var applicationDbContext = _context.StudentTerms.Include(s => s.Student);
 
             var stTerms = from st in applicationDbContext
                            select st;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                stTerms = stTerms.Where(s => s.Student.FirstName.Contains(searchString));
+            }
             switch (sortOrder)
             {
                 case "Abbrv_desc":

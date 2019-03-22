@@ -20,9 +20,35 @@ namespace DegreePlanner.Controllers
         }
 
         // GET: Requirement
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String sortOrder, String searchString)
         {
-            return View(await _context.Requirements.ToListAsync());
+            ViewData["AbbrSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Abbr_desc" : "";
+            ViewData["ReqSortParm"] = sortOrder == "Req" ? "Req_desc" : "Req";
+            ViewData["CurrentFilter"] = searchString;
+
+            var requirements = from r in _context.Requirements
+                          select r;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                requirements = requirements.Where(r => r.RequirementName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "Abbrv_desc":
+                    requirements = requirements.OrderByDescending(r => r.RequirementAbbrev);
+                    break;
+                case "Req_desc":
+                    requirements = requirements.OrderByDescending(r => r.RequirementName);
+                    break;
+                case "req":
+                    requirements = requirements.OrderBy(r => r.RequirementName);
+                    break;
+                default:
+                    requirements = requirements.OrderBy(r => r.RequirementAbbrev);
+                    break;
+            }
+            return View(await requirements.ToListAsync());
         }
 
         // GET: Requirement/Details/5

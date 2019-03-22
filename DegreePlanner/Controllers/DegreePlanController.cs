@@ -20,14 +20,21 @@ namespace DegreePlanner.Controllers
         }
 
         // GET: DegreePlan
-        public async Task<IActionResult> Index(String sortOrder)
+        public async Task<IActionResult> Index(String sortOrder, String searchString)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["AbbrvSortParm"] = sortOrder == "Abbrv" ? "Abbrv_desc" : "Abbrv";
+            ViewData["CurrentFilter"] = searchString;
+
             var applicationDbContext = _context.DegreePlans.Include(d => d.Degree).Include(d => d.Student);
             var degreePlans = from dp in applicationDbContext
                              select dp;
-            switch(sortOrder)
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degreePlans = degreePlans.Where(d => d.Student.FirstName.Contains(searchString));
+            }
+
+            switch (sortOrder)
             {
                 case "name_desc":
                     degreePlans = degreePlans.OrderByDescending(dp => dp.DegreePlanName);

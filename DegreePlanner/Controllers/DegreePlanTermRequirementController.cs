@@ -20,15 +20,20 @@ namespace DegreePlanner.Controllers
         }
 
         // GET: DegreePlanTermRequirement
-        public async Task<IActionResult> Index(String sortOrder)
+        public async Task<IActionResult> Index(String sortOrder, String searchString)
         {
             ViewData["TermSortParm"] = String.IsNullOrEmpty(sortOrder) ? "term_desc" : "";
             ViewData["DpSortParm"] = sortOrder == "Dp" ? "Dp_desc" : "Dp";
             ViewData["ReqSortParm"] = sortOrder == "Req" ? "Req_desc" : "Req";
-
+            ViewData["CurrentFilter"] = searchString;
             var applicationDbContext = _context.DegreePlanTermRequirements.Include(d => d.DegreePlan).Include(d => d.Requirement);
             var dpreq = from dpr in applicationDbContext
                         select dpr;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                dpreq = dpreq.Where(d => d.Requirement.RequirementName.Contains(searchString));
+            }
+
             switch (sortOrder)
             {
                 case "term_desc":
