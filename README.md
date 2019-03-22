@@ -26,5 +26,11 @@ Repository [link](https://github.com/rajv11/DegreePlanner)
  ```sh
 update-database
 ```
+![](https://github.com/rajv11/DegreePlanner/blob/master/Docs/PM.PNG)
 ### Run the application
 - Cick on IIS Express to run the application
+![](https://github.com/rajv11/DegreePlanner/blob/master/Docs/run.PNG)
+
+## Application
+![](https://github.com/rajv11/DegreePlanner/blob/master/Docs/demo.PNG)
+![]()
