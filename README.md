@@ -33,4 +33,4 @@ update-database
 
 ## Application
 ![](https://github.com/rajv11/DegreePlanner/blob/master/Docs/demo.PNG)
-![]()
+![](https://github.com/rajv11/DegreePlanner/blob/master/Docs/demo1.PNG)
