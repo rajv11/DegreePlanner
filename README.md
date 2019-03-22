@@ -1,5 +1,5 @@
 # Degree Palnner
-- [Issu Tracker](https://github.com/rajv11/DegreePlanner/issues)
+- [Issue Tracker](https://github.com/rajv11/DegreePlanner/issues)
 ## Developers
 
   - Dattu Bharghav Medarametla
