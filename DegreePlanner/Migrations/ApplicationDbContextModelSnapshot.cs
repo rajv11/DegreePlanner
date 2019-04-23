@@ -87,6 +87,8 @@ namespace DegreePlanner.Migrations
 
                     b.Property<int>("RequirementId");
 
+                    b.Property<string>("RequirementName");
+
                     b.HasKey("DegreeRequirementId");
 
                     b.HasIndex("DegreeId");
@@ -352,7 +354,7 @@ namespace DegreePlanner.Migrations
             modelBuilder.Entity("DegreePlanner.Models.DegreeRequirement", b =>
                 {
                     b.HasOne("DegreePlanner.Models.Degree", "Degree")
-                        .WithMany()
+                        .WithMany("DegreeRequirements")
                         .HasForeignKey("DegreeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
