@@ -44,6 +44,8 @@ namespace DegreePlanner
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
+
+
             }
             else
             {
