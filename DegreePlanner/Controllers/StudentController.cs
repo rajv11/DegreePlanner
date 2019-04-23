@@ -62,6 +62,7 @@ namespace DegreePlanner.Controllers
             }
 
             var student = await _context.Students
+                .Include(d => d.DegreePlans)
                 .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
             {
