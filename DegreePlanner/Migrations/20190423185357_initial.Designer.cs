@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DegreePlanner.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190405220231_AddProperty")]
-    partial class AddProperty
+    [Migration("20190423185357_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,6 +88,8 @@ namespace DegreePlanner.Migrations
                     b.Property<int>("DegreeId");
 
                     b.Property<int>("RequirementId");
+
+                    b.Property<string>("RequirementName");
 
                     b.HasKey("DegreeRequirementId");
 
@@ -356,7 +358,7 @@ namespace DegreePlanner.Migrations
             modelBuilder.Entity("DegreePlanner.Models.DegreeRequirement", b =>
                 {
                     b.HasOne("DegreePlanner.Models.Degree", "Degree")
-                        .WithMany()
+                        .WithMany("DegreeRequirements")
                         .HasForeignKey("DegreeId")
                         .OnDelete(DeleteBehavior.Cascade);
 

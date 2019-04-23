@@ -81,7 +81,8 @@ namespace DegreePlanner.Migrations
                     FirstName = table.Column<string>(maxLength: 40, nullable: false),
                     LastName = table.Column<string>(maxLength: 40, nullable: false),
                     SNumber = table.Column<string>(maxLength: 10, nullable: false),
-                    _919 = table.Column<int>(nullable: false)
+                    _919 = table.Column<int>(nullable: false),
+                    Done = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
