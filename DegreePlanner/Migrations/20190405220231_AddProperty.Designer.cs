@@ -4,14 +4,16 @@ using DegreePlanner.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DegreePlanner.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190405220231_AddProperty")]
+    partial class AddProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,8 +88,6 @@ namespace DegreePlanner.Migrations
                     b.Property<int>("DegreeId");
 
                     b.Property<int>("RequirementId");
-
-                    b.Property<string>("RequirementName");
 
                     b.HasKey("DegreeRequirementId");
 
@@ -356,7 +356,7 @@ namespace DegreePlanner.Migrations
             modelBuilder.Entity("DegreePlanner.Models.DegreeRequirement", b =>
                 {
                     b.HasOne("DegreePlanner.Models.Degree", "Degree")
-                        .WithMany("DegreeRequirements")
+                        .WithMany()
                         .HasForeignKey("DegreeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
