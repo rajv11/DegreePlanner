@@ -13,6 +13,9 @@
   - Student can Plan a Degree based on their intrest
   - A student can multiple plans.
   - Drag and Drop feature for selecting degree/Subject
+  
+ # Team Slide
+ ![](https://github.com/rajv11/DegreePlanner/blob/master/Docs/screen.png)
 
 ### Clone the repo
 Repository [link](https://github.com/rajv11/DegreePlanner)
