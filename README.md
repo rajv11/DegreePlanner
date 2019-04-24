@@ -1,4 +1,4 @@
-# Degree Palnner
+# Degree Planner
 - [Issue Tracker](https://github.com/rajv11/DegreePlanner/issues)
 - [Contributions](https://github.com/rajv11/DegreePlanner/graphs/contributors)
 ## Developers
