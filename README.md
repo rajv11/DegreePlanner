@@ -1,5 +1,6 @@
 # Degree Palnner
 - [Issue Tracker](https://github.com/rajv11/DegreePlanner/issues)
+- [Contributions](https://github.com/rajv11/DegreePlanner/graphs/contributors)
 ## Developers
 
   - Dattu Bharghav Medarametla
@@ -30,6 +31,10 @@ update-database
 ### Run the application
 - Cick on IIS Express to run the application
 ![](https://github.com/rajv11/DegreePlanner/blob/master/Docs/run.PNG)
+
+### Deploy in cloud using Microsoft Azure
+- Tutorial: https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb
+- Microsoft has AppService. Follow the steps from above officaila tutorial link to deploy your web app to azure cloud.
 
 ## Application
 ![](https://github.com/rajv11/DegreePlanner/blob/master/Docs/demo.PNG)
