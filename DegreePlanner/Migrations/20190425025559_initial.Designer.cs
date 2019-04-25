@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DegreePlanner.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190423185357_initial")]
+    [Migration("20190425025559_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,6 +70,8 @@ namespace DegreePlanner.Migrations
 
                     b.Property<int>("RequirementId");
 
+                    b.Property<int?>("StudentTermId");
+
                     b.Property<int>("TermId");
 
                     b.HasKey("DegreePlanTermRequirementId");
@@ -77,6 +79,8 @@ namespace DegreePlanner.Migrations
                     b.HasIndex("DegreePlanId");
 
                     b.HasIndex("RequirementId");
+
+                    b.HasIndex("StudentTermId");
 
                     b.ToTable("DegreePlanTermRequirement");
                 });
@@ -104,6 +108,8 @@ namespace DegreePlanner.Migrations
                 {
                     b.Property<int>("RequirementId");
 
+                    b.Property<int?>("DegreeId");
+
                     b.Property<string>("RequirementAbbrev")
                         .IsRequired();
 
@@ -112,6 +118,8 @@ namespace DegreePlanner.Migrations
                         .HasMaxLength(40);
 
                     b.HasKey("RequirementId");
+
+                    b.HasIndex("DegreeId");
 
                     b.ToTable("Requirement");
                 });
@@ -145,6 +153,8 @@ namespace DegreePlanner.Migrations
                 {
                     b.Property<int>("StudentTermId");
 
+                    b.Property<int>("DegreePlanId");
+
                     b.Property<int>("StudentId");
 
                     b.Property<int>("Term");
@@ -158,6 +168,8 @@ namespace DegreePlanner.Migrations
                         .HasMaxLength(40);
 
                     b.HasKey("StudentTermId");
+
+                    b.HasIndex("DegreePlanId");
 
                     b.HasIndex("StudentId");
 
@@ -353,6 +365,10 @@ namespace DegreePlanner.Migrations
                         .WithMany()
                         .HasForeignKey("RequirementId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DegreePlanner.Models.StudentTerm")
+                        .WithMany("DegreePlanTermRequirements")
+                        .HasForeignKey("StudentTermId");
                 });
 
             modelBuilder.Entity("DegreePlanner.Models.DegreeRequirement", b =>
@@ -368,10 +384,22 @@ namespace DegreePlanner.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("DegreePlanner.Models.Requirement", b =>
+                {
+                    b.HasOne("DegreePlanner.Models.Degree")
+                        .WithMany("Requirements")
+                        .HasForeignKey("DegreeId");
+                });
+
             modelBuilder.Entity("DegreePlanner.Models.StudentTerm", b =>
                 {
-                    b.HasOne("DegreePlanner.Models.Student", "Student")
+                    b.HasOne("DegreePlanner.Models.DegreePlan", "DegreePlan")
                         .WithMany("StudentTerms")
+                        .HasForeignKey("DegreePlanId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DegreePlanner.Models.Student", "Student")
+                        .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

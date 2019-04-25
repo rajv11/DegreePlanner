@@ -28,6 +28,5 @@ namespace DegreePlanner.Models
         public bool Done { get; set; }
 
         public ICollection<DegreePlan> DegreePlans { get; set; }
-        public ICollection<StudentTerm> StudentTerms { get; set; }
     }
 }

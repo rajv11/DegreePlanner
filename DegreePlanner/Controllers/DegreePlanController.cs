@@ -107,7 +107,15 @@ namespace DegreePlanner.Controllers
                 return NotFound();
             }
 
-            var degreePlan = await _context.DegreePlans.FindAsync(id);
+
+
+            var degreePlan = await _context.DegreePlans
+                .Include(p => p.Degree).ThenInclude(pd => pd.Requirements)
+                .Include(p => p.Student)
+                .Include(p => p.StudentTerms).ThenInclude(pt => pt.DegreePlanTermRequirements)
+                .SingleOrDefaultAsync(m => m.DegreePlanId == id);
+
+
             if (degreePlan == null)
             {
                 return NotFound();

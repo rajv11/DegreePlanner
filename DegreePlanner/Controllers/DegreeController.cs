@@ -61,6 +61,7 @@ namespace DegreePlanner.Controllers
             }
 
             var degree = await _context.Degrees
+              .Include(d => d.Requirements)
                  .Include(d => d.DegreeRequirements)
                 .FirstOrDefaultAsync(m => m.DegreeId == id);
             if (degree == null)

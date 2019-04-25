@@ -12,6 +12,8 @@ namespace DegreePlanner.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StudentTermId { get; set; }
 
+        public int DegreePlanId { get; set; }
+
         [ForeignKey("StudentId")]
         public int StudentId { get; set; }
         public int Term { get; set; }
@@ -27,5 +29,8 @@ namespace DegreePlanner.Models
         public string TermLabel { get; set; }
 
         public Student Student { get; set; }
+        public DegreePlan DegreePlan { get; set; }
+
+        public ICollection<DegreePlanTermRequirement> DegreePlanTermRequirements { get; set; }
     }
 }

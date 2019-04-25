@@ -28,7 +28,7 @@ namespace DegreePlanner.Controllers
             ViewData["StudentSortParm"] = sortOrder == "St" ? "St_desc" : "St";
             ViewData["CurrentFilter"] = searchString;
 
-            var applicationDbContext = _context.StudentTerms.Include(s => s.Student);
+            var applicationDbContext = _context.StudentTerms.Include(s => s.Student).Include(s => s.DegreePlan);
 
             var stTerms = from st in applicationDbContext
                            select st;
@@ -76,6 +76,7 @@ namespace DegreePlanner.Controllers
             }
 
             var studentTerm = await _context.StudentTerms
+                .Include(s => s.DegreePlan)
                 .Include(s => s.Student)
                 .FirstOrDefaultAsync(m => m.StudentTermId == id);
             if (studentTerm == null)
@@ -98,7 +99,7 @@ namespace DegreePlanner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentTermId,StudentId,Term,TermAbbrev,TermLabel")] StudentTerm studentTerm)
+        public async Task<IActionResult> Create([Bind("StudentTermId,DegreePlanId,StudentId,Term,TermAbbrev,TermLabel")] StudentTerm studentTerm)
         {
             if (ModelState.IsValid)
             {
@@ -106,6 +107,8 @@ namespace DegreePlanner.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev", studentTerm.DegreePlanId);
+
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", studentTerm.StudentId);
             return View(studentTerm);
         }
@@ -123,6 +126,8 @@ namespace DegreePlanner.Controllers
             {
                 return NotFound();
             }
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev", studentTerm.DegreePlanId);
+
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", studentTerm.StudentId);
             return View(studentTerm);
         }
@@ -132,7 +137,7 @@ namespace DegreePlanner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentTermId,StudentId,Term,TermAbbrev,TermLabel")] StudentTerm studentTerm)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentTermId,DegreePlanId,StudentId,Term,TermAbbrev,TermLabel")] StudentTerm studentTerm)
         {
             if (id != studentTerm.StudentTermId)
             {
@@ -159,6 +164,8 @@ namespace DegreePlanner.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev", studentTerm.DegreePlanId);
+
             ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", studentTerm.StudentId);
             return View(studentTerm);
         }
@@ -172,6 +179,7 @@ namespace DegreePlanner.Controllers
             }
 
             var studentTerm = await _context.StudentTerms
+                .Include(s => s.DegreePlan)
                 .Include(s => s.Student)
                 .FirstOrDefaultAsync(m => m.StudentTermId == id);
             if (studentTerm == null)
